@@ -4,16 +4,28 @@ from tqdm import tqdm
 
 
 class BaseMultiProcessRunner(ABC):
+    """
+    多进程的抽象类
+    """
     @abstractmethod
     def __init__(self):
+        """
+        需要实现的抽象方法
+        """
         pass
 
     @abstractmethod
     def _item_list(self):
+        """
+        需要实现的抽象方法
+        """
         pass
 
     @abstractmethod
     def _process_one_item(self, item):
+        """
+        需要实现的抽象方法
+        """
         pass
 
     def _item_queue(self):

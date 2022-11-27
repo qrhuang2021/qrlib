@@ -1,9 +1,12 @@
 setup.py
 qrlib/__init__.py
+qrlib/utils.py
 qrlib.egg-info/PKG-INFO
 qrlib.egg-info/SOURCES.txt
 qrlib.egg-info/dependency_links.txt
 qrlib.egg-info/top_level.txt
+qrlib/design_pattern/__init__.py
+qrlib/design_pattern/adapter.py
 qrlib/file_path/__init__.py
 qrlib/file_path/functions.py
 qrlib/file_path/path_searcher.py
