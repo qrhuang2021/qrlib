@@ -4,6 +4,7 @@ from tqdm import tqdm
 
 
 class BaseMultiProcessRunner(ABC):
+    DEFAULT_NUM_PROCESS = 20
     """
     多进程的抽象类
     """
@@ -55,7 +56,12 @@ class BaseMultiProcessRunner(ABC):
             self._process_one_item(item)
         self._after_loop_when_single_process()
 
-    def multi_process(self, num_process, show_progress=True):
+    def multi_process(self, num_process=None, show_progress=True):
+        if num_process is None:
+            num_process = self.DEFAULT_NUM_PROCESS
+        if len(self._item_list()) < num_process:
+            num_process = len(self._item_list())
+
         item_queue = self._item_queue()
 
         pool = mp.Pool()
