@@ -8,12 +8,9 @@ class BaseMultiProcessRunner(ABC):
     """
     多进程的抽象类
     """
-    @abstractmethod
     def __init__(self):
-        """
-        需要实现的抽象方法
-        """
-        pass
+        self._cache_item_list = self._item_list()
+        self._length_item_list = len(self._cache_item_list)
 
     @abstractmethod
     def _item_list(self):
@@ -52,15 +49,15 @@ class BaseMultiProcessRunner(ABC):
 
     def single_process(self, show_progress=True):
         self._before_loop_when_single_process()
-        for item in (tqdm(self._item_list()) if show_progress else self._item_list()):
+        for item in (tqdm(self._cache_item_list) if show_progress else self._item_list()):
             self._process_one_item(item)
         self._after_loop_when_single_process()
 
     def multi_process(self, num_process=None, show_progress=True):
         if num_process is None:
             num_process = self.DEFAULT_NUM_PROCESS
-        if len(self._item_list()) < num_process:
-            num_process = len(self._item_list())
+        if self._length_item_list < num_process:
+            num_process = self._length_item_list
 
         item_queue = self._item_queue()
 
@@ -81,7 +78,11 @@ class BaseMultiProcessRunner(ABC):
                 print('Item queue is empty.')
                 break
             else:
-                self._process_one_item(item)
-                if show_progress:
-                    print('There are still {} items which need to process.'.format(item_queue.qsize()))
+                try:
+                    self._process_one_item(item)
+                except Exception as e:
+                    print(e)
+                else:
+                    if show_progress:
+                        print('There are still {} items which need to process.'.format(item_queue.qsize()))
         self._after_loop_when_multi_process()

@@ -1,4 +1,4 @@
-from .runner import BaseMultiProcessRunner
+from .base_multi_process_runner import BaseMultiProcessRunner
 import os
 
 
