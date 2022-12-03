@@ -1,5 +1,7 @@
+README.md
 setup.py
 qrlib/__init__.py
+qrlib/command_argument.py
 qrlib/utils.py
 qrlib.egg-info/PKG-INFO
 qrlib.egg-info/SOURCES.txt
@@ -11,4 +13,7 @@ qrlib/file_path/__init__.py
 qrlib/file_path/functions.py
 qrlib/file_path/path_searcher.py
 qrlib/multi_process/__init__.py
-qrlib/multi_process/runner.py
+qrlib/multi_process/base_multi_process_runner.py
+qrlib/multi_process/command_runner.py
+qrlib/visulization/__init__.py
+qrlib/visulization/image_composer.py
