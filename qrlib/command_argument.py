@@ -11,9 +11,9 @@ class CommandArgument:
         # name, type, default, help
         self._argument_parser.add_argument(f'--{name}', **kwargs)
 
-    def set(self, name_value_dict):
+    def set(self, **kwargs):
         name_value_list = []
-        for name, value in name_value_dict.items():
+        for name, value in kwargs.items():
             name_value_list.append(f'--{name}')
             name_value_list.append(str(value))
         sys.argv.extend(name_value_list)

@@ -24,5 +24,5 @@ class ListGrouper:
         return output_list
 
     def group_to_several(self, num):
-        step = self._length / num + 1
+        step = self._length // num + 1
         return self.group_by_step(step)
