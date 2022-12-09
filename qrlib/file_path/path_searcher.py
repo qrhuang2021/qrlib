@@ -7,6 +7,8 @@ class PathSearcher:
         self._root = root
 
     def all_path(self, special_extensions=None):
+        if isinstance(special_extensions, str):
+            special_extensions = [special_extensions]
         result = []
         for root, _, filenames in sorted(os.walk(self._root, followlinks=True)):
             for filename in filenames:

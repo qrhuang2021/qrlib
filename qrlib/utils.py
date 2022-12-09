@@ -26,3 +26,17 @@ class ListGrouper:
     def group_to_several(self, num):
         step = self._length // num + 1
         return self.group_by_step(step)
+
+
+class Element:
+    ID2Element = {}
+    def __init__(self, id):
+        self._id = id
+        self.ID2Element[id] = self
+
+    @classmethod
+    def get(cls, id):
+        if id in cls.ID2Element.keys():
+            return cls.ID2Element[id]
+        else:
+            return cls(id)
