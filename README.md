@@ -2,6 +2,8 @@
 
 `qrlib` 是一个面向三维深度学习项目的可复用 Python 库，用来沉淀跨项目稳定复用的代码。
 
+- 在线文档：https://qrhuang2021.github.io/qrlib/
+
 这个仓库以“库优先”为原则：
 
 - 把稳定、通用、跨项目复用的代码放进来
@@ -41,6 +43,20 @@ ruff check .
 pytest
 ```
 
+如果你想用更直观的 HTML 文档界面阅读仓库说明，可以在本地启动文档站：
+
+```bash
+mkdocs serve
+```
+
+启动后访问 `http://127.0.0.1:8000`，即可通过导航栏、站内搜索和目录侧边栏浏览文档。
+
+如果你已经执行过 `mkdocs build`，也可以从仓库里的本地入口页打开静态 HTML 文档：
+
+- [本地 HTML 文档入口](open-docs.html)
+
+这个入口页只用于本地仓库环境。若尚未构建站点，它会提示你先运行 `mkdocs build` 或 `mkdocs serve`。
+
 如果你的项目环境里已经安装了 `torch`，`qrlib.geometry` 会自动支持 `torch.Tensor` 路径。
 这里不把 `torch` 声明为库本身的安装依赖，避免在不同平台上强行绑定具体的 PyTorch 分发方式。
 
@@ -54,6 +70,7 @@ uv pip install git+ssh://git@github.com/qrhuang2021/qrlib.git
 
 ```text
 qrlib/
+├─ mkdocs.yml
 ├─ pyproject.toml
 ├─ src/qrlib/
 │  ├─ data/
@@ -94,6 +111,8 @@ normalized_cloud, source_center, source_scale = normalize_to_sphere(cloud)
 
 - [docs/geometry/index.md](docs/geometry/index.md)：总览、类型约束与基础使用方式
 - [docs/geometry/normalization.md](docs/geometry/normalization.md)：归一化与反归一化行为说明
+
+如果你更习惯阅读文档站而不是直接看 Markdown 文件，可运行 `mkdocs serve` 本地预览完整 HTML 站点。
 
 `examples` 按使用场景组织，不按单个源码文件逐一配套。当前几何能力对应一个统一示例：
 

@@ -8,6 +8,7 @@ __pycache__/
 uv.lock
 build/
 dist/
+site/
 
 # Virtual environments
 .venv/

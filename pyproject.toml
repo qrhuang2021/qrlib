@@ -14,6 +14,8 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+  "mkdocs>=1.6",
+  "mkdocs-material>=9.5",
   "pre-commit",
   "pytest",
   "ruff",

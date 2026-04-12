@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>qrlib 本地文档入口</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4f7f4;
+        --card: #ffffff;
+        --text: #18322f;
+        --muted: #58706c;
+        --accent: #0f766e;
+        --border: #d7e2df;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background:
+          radial-gradient(circle at top left, #d8efe9 0, transparent 36%),
+          linear-gradient(180deg, #fbfdfc 0, var(--bg) 100%);
+        color: var(--text);
+        font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      }
+
+      main {
+        max-width: 640px;
+        padding: 32px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--card) 92%, white);
+        box-shadow: 0 18px 48px rgba(15, 118, 110, 0.08);
+      }
+
+      h1 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 2rem;
+      }
+
+      p {
+        margin: 0 0 16px;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      code {
+        padding: 0.1em 0.35em;
+        border-radius: 6px;
+        background: #eef6f4;
+        color: var(--text);
+        font-family: "JetBrains Mono", "Cascadia Code", monospace;
+      }
+    </style>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        fetch("./site/index.html", { method: "HEAD" })
+          .then((response) => {
+            if (response.ok) {
+              window.location.replace("./site/index.html");
+            }
+          })
+          .catch(() => {});
+      });
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>qrlib 本地文档入口</h1>
+      <p>
+        这个页面用于从本地仓库打开构建后的 HTML 文档站。
+        如果页面没有自动跳转，通常说明你还没有生成静态站点。
+      </p>
+      <p>
+        先在仓库根目录执行 <code>mkdocs build</code>，然后重新打开本页；
+        或者直接执行 <code>mkdocs serve</code>，再访问
+        <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>。
+      </p>
+      <p>
+        若你已经构建完成，也可以直接打开
+        <a href="./site/index.html">site/index.html</a>。
+      </p>
+    </main>
+  </body>
+</html>
