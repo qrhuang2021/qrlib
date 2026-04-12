@@ -13,6 +13,7 @@ def test_package_version_is_exposed() -> None:
     "module_name",
     [
         "qrlib.data",
+        "qrlib.geometry",
         "qrlib.metrics",
     ],
 )
