@@ -1,0 +1,31 @@
+# Python caches and build outputs
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+uv.lock
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+
+# Notebook artifacts
+.ipynb_checkpoints/
+
+# Experiment outputs
+artifacts/
+checkpoints/
+logs/
+outputs/
+runs/
+wandb/
