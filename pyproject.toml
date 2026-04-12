@@ -8,7 +8,9 @@ version = "0.1.0"
 description = "Reusable 3D deep learning utilities for research projects."
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+  "numpy>=1.26",
+]
 
 [project.optional-dependencies]
 dev = [

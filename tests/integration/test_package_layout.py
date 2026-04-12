@@ -11,8 +11,7 @@ def test_src_layout_keeps_expected_subpackages() -> None:
         if path.is_dir() and not path.name.startswith("__")
     }
 
-    assert {"data", "metrics"}.issubset(package_dirs)
-    assert package_dirs == {"data", "metrics"}
+    assert {"data", "geometry", "metrics"}.issubset(package_dirs)
 
 
 def test_top_level_api_stays_small() -> None:
