@@ -1,0 +1,45 @@
+site_name: qrlib
+site_description: 面向三维深度学习项目的可复用 Python 库文档
+repo_url: https://github.com/qrhuang2021/qrlib
+repo_name: qrhuang2021/qrlib
+docs_dir: docs
+site_dir: site
+strict: true
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: teal
+      accent: indigo
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+
+nav:
+  - 首页: index.md
+  - 快速开始: getting-started.md
+  - 架构说明: architecture.md
+  - Geometry:
+      - 总览: geometry/index.md
+      - 归一化: geometry/normalization.md
