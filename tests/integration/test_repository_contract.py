@@ -11,8 +11,10 @@ def test_docs_tree_matches_spec_driven_layout() -> None:
         "docs/getting-started.md",
         "docs/tutorials/index.md",
         "docs/tutorials/geometry-normalization-workflow.md",
+        "docs/tutorials/point-cloud-metrics-workflow.md",
         "docs/api/index.md",
         "docs/api/geometry.md",
+        "docs/api/metrics.md",
         "docs/concepts/index.md",
         "docs/concepts/architecture.md",
         "docs/concepts/spec-driven-development.md",
@@ -20,10 +22,12 @@ def test_docs_tree_matches_spec_driven_layout() -> None:
         "docs/developer/specs/feature-template.md",
         "docs/developer/specs/repository-layout-and-workflow.md",
         "docs/developer/specs/geometry-normalization.md",
+        "docs/developer/specs/point-cloud-distance-metrics.md",
         "docs/developer/design/index.md",
         "docs/developer/design/feature-template.md",
         "docs/developer/design/repository-layout-and-workflow.md",
         "docs/developer/design/geometry-normalization.md",
+        "docs/developer/design/point-cloud-distance-metrics.md",
     }
 
     missing_paths = sorted(path for path in required_paths if not (ROOT / path).exists())

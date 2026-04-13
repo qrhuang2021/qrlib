@@ -42,9 +42,11 @@ nav:
   - 教程:
       - 总览: tutorials/index.md
       - 几何归一化工作流: tutorials/geometry-normalization-workflow.md
+      - 点云距离指标工作流: tutorials/point-cloud-metrics-workflow.md
   - API:
       - 总览: api/index.md
       - qrlib.geometry: api/geometry.md
+      - qrlib.metrics: api/metrics.md
   - 概念:
       - 总览: concepts/index.md
       - 仓库架构: concepts/architecture.md

@@ -9,5 +9,6 @@
 当前主要公开能力：
 
 - [qrlib.geometry](geometry.md)
+- [qrlib.metrics](metrics.md)
 
 随着能力增加，这一层会继续收敛稳定入口，而不是把实现细节直接暴露出去。

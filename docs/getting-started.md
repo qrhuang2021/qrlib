@@ -12,6 +12,12 @@ source .venv/bin/activate
 uv pip install --python .venv/bin/python -e ".[dev]"
 ```
 
+如果你希望为 `numpy` 指标计算启用 SciPy `KDTree` 快路径，可以改为：
+
+```bash
+uv pip install --python .venv/bin/python -e ".[dev,scipy]"
+```
+
 ## 统一校验
 
 安装完成后，优先运行仓库统一校验脚本：
@@ -65,6 +71,8 @@ from qrlib.metrics import ...
 ## 下一步阅读
 
 - [几何归一化工作流](tutorials/geometry-normalization-workflow.md)
+- [点云距离指标工作流](tutorials/point-cloud-metrics-workflow.md)
 - [qrlib.geometry API](api/geometry.md)
+- [qrlib.metrics API](api/metrics.md)
 - [仓库架构](concepts/architecture.md)
 - [面向规范开发](concepts/spec-driven-development.md)

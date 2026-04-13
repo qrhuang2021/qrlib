@@ -5,5 +5,6 @@
 当前公开教程：
 
 - [几何归一化工作流](geometry-normalization-workflow.md)
+- [点云距离指标工作流](point-cloud-metrics-workflow.md)
 
 随着能力增加，这里会继续收敛跨模块、可直接照着运行的使用场景。
