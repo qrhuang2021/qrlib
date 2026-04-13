@@ -5,7 +5,7 @@
 这个文档站面向两类阅读场景：
 
 - 想快速了解库的定位、边界和稳定导入方式
-- 想直接查几何能力的用法、约束与返回值约定
+- 想直接查几何能力与指标能力的用法、约束与返回值约定
 
 ## 快速入口
 
@@ -41,3 +41,4 @@ normalized_cloud, source_center, source_scale = normalize_to_sphere(cloud)
 ```
 
 如果你想看完整工作流，请继续阅读 [几何归一化工作流](tutorials/geometry-normalization-workflow.md)。
+如果你想看点云距离指标的使用方式，请继续阅读 [点云距离指标工作流](tutorials/point-cloud-metrics-workflow.md)。

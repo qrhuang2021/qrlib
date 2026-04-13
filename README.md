@@ -55,6 +55,12 @@ source .venv/bin/activate
 uv pip install --python .venv/bin/python -e ".[dev]"
 ```
 
+如果你希望为 `numpy` 指标计算启用 SciPy `KDTree` 快路径，可以使用：
+
+```bash
+uv pip install --python .venv/bin/python -e ".[dev,scipy]"
+```
+
 安装完成后，可以直接运行统一校验脚本：
 
 ```bash
@@ -113,4 +119,18 @@ cloud = PointCloud(points)
 normalized_cloud, source_center, source_scale = normalize_to_sphere(cloud)
 ```
 
-完整使用流程见 `examples/geometry_workflow.py`，公开文档入口见 `docs/`，维护者规范入口见 `docs/developer/`。
+点云距离指标推荐这样使用：
+
+```python
+import numpy as np
+
+from qrlib.metrics import chamfer_distance, hausdorff_distance
+
+source = np.array([[0.0, 0.0, 0.0], [2.0, 0.0, 0.0]], dtype=np.float32)
+target = np.array([[0.0, 0.0, 0.0]], dtype=np.float32)
+
+cd_score = chamfer_distance(source, target)
+hd_score = hausdorff_distance(source, target, directed=True)
+```
+
+完整使用流程见 `examples/geometry_workflow.py` 与 `examples/metrics_workflow.py`，公开文档入口见 `docs/`，维护者规范入口见 `docs/developer/`。

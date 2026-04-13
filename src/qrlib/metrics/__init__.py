@@ -1,3 +1,5 @@
 """通用指标计算模块。"""
 
-__all__: list[str] = []
+from .distance import chamfer_distance, hausdorff_distance
+
+__all__ = ["chamfer_distance", "hausdorff_distance"]
