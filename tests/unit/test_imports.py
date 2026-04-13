@@ -6,7 +6,7 @@ import qrlib
 
 
 def test_package_version_is_exposed() -> None:
-    assert qrlib.__version__ == "0.1.0"
+    assert qrlib.__version__ == "0.2.0"
 
 
 @pytest.mark.parametrize(

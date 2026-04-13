@@ -1,32 +1,51 @@
 # qrlib
 
-`qrlib` 是一个面向三维深度学习项目的可复用 Python 库，用来沉淀跨项目稳定复用的代码。
+`qrlib` 是一个面向三维深度学习项目的可复用 Python 库，用来沉淀跨项目稳定复用的基础能力。
 
 - 在线文档：https://qrhuang2021.github.io/qrlib/
 
-这个仓库以“库优先”为原则：
+## 仓库定位
 
-- 把稳定、通用、跨项目复用的代码放进来
-- 具体任务的训练工程仍然放在各自项目仓库中
-- 一段代码至少在两个项目中复用后，再考虑迁入 `qrlib`
+这个仓库坚持“库优先”而不是“实验工程优先”：
 
-## 适合放入 `qrlib` 的内容
+- 只接收稳定、通用、跨项目复用的能力
+- 具体训练流程仍然留在各自项目仓库中
+- 一段代码至少已经在多个项目里复用过，才适合迁入 `qrlib`
 
-- 数据处理相关的通用代码，例如采样、`collate`、增强、格式转换
+适合放入 `qrlib` 的内容包括：
+
+- 通用数据处理能力，例如采样、`collate`、增强、格式转换
 - 几何表示与几何变换，例如点云、网格、归一化
 - 可复用的指标计算代码
-- 小而稳定、已经在多个项目中复用的辅助模块
+- 小而稳定、已经被多个项目验证过的辅助模块
 
-## 不适合放入 `qrlib` 的内容
+不适合放入 `qrlib` 的内容包括：
 
-- 完整实验流程或只服务某一篇论文的训练代码
-- 私有数据、模型权重、日志、依赖本地路径的 notebook
-- 把各种无关函数都塞进去的 `utils.py`
-- 只用过一次、接口还不稳定的代码
+- 只服务单篇论文或单个实验的完整训练工程
+- 私有数据、模型权重、日志与 notebook 输出
+- 边界不清、不断膨胀的 `utils.py`
+- 只使用过一次、接口仍然频繁变化的代码
+
+## 面向规范开发工作流
+
+本仓库默认按照“规范 -> 设计 -> 实现 -> 验证”的顺序协作开发。
+
+1. 先为本次改动选择一个 `change slug`
+2. 在 `docs/developer/specs/<slug>.md` 里写清楚目标、非目标、公开契约与验收标准
+3. 在 `docs/developer/design/<slug>.md` 里写清楚模块拆分、实现路径、替代方案与验证计划
+4. 再修改 `src/qrlib`、测试和公开文档
+5. 最后运行 `./scripts/check.sh`
+
+维护者文档会被构建进文档站，但默认不会出现在公开导航栏中。
+如果你想直接打开隐藏入口，可以：
+
+- 本地构建后打开仓库根目录的 `open-docs.html`
+- 直接访问 `site/developer/specs/index.html`
+- 直接访问 `site/developer/design/index.html`
 
 ## 安装
 
-先通过 Git SSH 地址获取仓库，再使用 `uv` 配置本地开发环境：
+推荐先克隆仓库，再使用 `uv` 配置本地开发环境：
 
 ```bash
 git clone git@github.com:qrhuang2021/qrlib.git
@@ -36,53 +55,40 @@ source .venv/bin/activate
 uv pip install --python .venv/bin/python -e ".[dev]"
 ```
 
-安装完成后可执行基础检查：
+安装完成后，可以直接运行统一校验脚本：
 
 ```bash
-ruff check .
-pytest
+./scripts/check.sh
 ```
 
-如果你想用更直观的 HTML 文档界面阅读仓库说明，可以在本地启动文档站：
-
-```bash
-mkdocs serve
-```
-
-启动后访问 `http://127.0.0.1:8000`，即可通过导航栏、站内搜索和目录侧边栏浏览文档。
-
-如果你已经执行过 `mkdocs build`，也可以从仓库里的本地入口页打开静态 HTML 文档：
-
-- [本地 HTML 文档入口](open-docs.html)
-
-这个入口页只用于本地仓库环境。若尚未构建站点，它会提示你先运行 `mkdocs build` 或 `mkdocs serve`。
-
-如果你的项目环境里已经安装了 `torch`，`qrlib.geometry` 会自动支持 `torch.Tensor` 路径。
-这里不把 `torch` 声明为库本身的安装依赖，避免在不同平台上强行绑定具体的 PyTorch 分发方式。
-
-如果你只是想直接安装这个库，也可以使用：
+如果你只想直接安装这个库，也可以使用：
 
 ```bash
 uv pip install git+ssh://git@github.com/qrhuang2021/qrlib.git
 ```
 
-## 目录概览
+## 文档结构
+
+仓库文档按公开文档与维护者文档分层：
 
 ```text
-qrlib/
-├─ mkdocs.yml
-├─ pyproject.toml
-├─ src/qrlib/
-│  ├─ data/
-│  ├─ geometry/
-│  ├─ metrics/
-├─ tests/
-├─ examples/
-├─ docs/
-└─ scripts/
+docs/
+├─ index.md
+├─ getting-started.md
+├─ tutorials/
+├─ api/
+├─ concepts/
+└─ developer/
+   ├─ specs/
+   └─ design/
 ```
 
-## 导入方式
+- `tutorials/`：按使用场景组织的教程
+- `api/`：稳定公开接口的参考说明
+- `concepts/`：仓库定位、模块边界、开发范式
+- `developer/`：维护者用的规范与设计，默认不进入公开导航
+
+## 稳定导入方式
 
 建议按能力边界从子包导入，而不是依赖一个很大的顶层导出：
 
@@ -107,33 +113,4 @@ cloud = PointCloud(points)
 normalized_cloud, source_center, source_scale = normalize_to_sphere(cloud)
 ```
 
-`qrlib.geometry` 的公开说明集中放在 `docs/geometry/` 下：
-
-- [docs/geometry/index.md](docs/geometry/index.md)：总览、类型约束与基础使用方式
-- [docs/geometry/normalization.md](docs/geometry/normalization.md)：归一化与反归一化行为说明
-
-如果你更习惯阅读文档站而不是直接看 Markdown 文件，可运行 `mkdocs serve` 本地预览完整 HTML 站点。
-
-`examples` 按使用场景组织，不按单个源码文件逐一配套。当前几何能力对应一个统一示例：
-
-- [examples/geometry_workflow.py](examples/geometry_workflow.py)
-
-## 新代码迁入规则
-
-在把代码放进 `qrlib` 之前，先问自己三个问题：
-
-1. 这段代码是否已经在多个项目中复用？
-2. 它的接口是否已经足够稳定，能让别人依赖？
-3. 它是否自然属于一个边界清晰、文档化的稳定子包，例如 `qrlib.data`、`qrlib.geometry` 或 `qrlib.metrics`？
-
-如果答案是否定的，就先继续留在具体项目仓库里。
-
-新增能力时，不要求为每个源码文件机械补齐一份独立文档和示例。
-更重要的是：
-
-- 对外公开、稳定承诺的 API 有充分测试
-- 用户能在 `docs/` 中找到必要说明
-- `examples/` 能覆盖真实使用场景
-- 重要边界、形状变换和数值行为能被测试验证
-
-更多说明见 [docs/architecture.md](docs/architecture.md)。
+完整使用流程见 `examples/geometry_workflow.py`，公开文档入口见 `docs/`，维护者规范入口见 `docs/developer/`。

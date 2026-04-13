@@ -12,30 +12,45 @@ source .venv/bin/activate
 uv pip install --python .venv/bin/python -e ".[dev]"
 ```
 
-安装完成后，可先运行基础检查：
+## 统一校验
+
+安装完成后，优先运行仓库统一校验脚本：
+
+```bash
+./scripts/check.sh
+```
+
+这个脚本会依次执行：
 
 ```bash
 ruff check .
 pytest
+mkdocs build
 ```
 
-## 本地预览 HTML 文档站
+## 本地预览文档
 
-这个仓库已经接入 `MkDocs + Material for MkDocs`。本地预览方式如下：
+这个仓库使用 `MkDocs + Material for MkDocs`：
 
 ```bash
 mkdocs serve
 ```
 
-启动后访问 `http://127.0.0.1:8000`，可以通过左侧导航、站内搜索和页面目录阅读文档。
+启动后访问 `http://127.0.0.1:8000`。
 
-如果你只想验证文档能否成功构建，可以执行：
+如果你只是想生成静态站点，可以执行：
 
 ```bash
 mkdocs build
 ```
 
-## 导入建议
+生成完成后，可以直接打开仓库根目录的 `open-docs.html`。这个入口页同时提供：
+
+- 公开文档入口
+- 隐藏的开发者规范入口
+- 隐藏的开发者设计入口
+
+## 稳定导入建议
 
 建议按能力边界从子包导入，而不是依赖一个很大的顶层导出：
 
@@ -47,28 +62,9 @@ from qrlib.metrics import ...
 
 `qrlib.__init__` 会尽量保持精简，避免公共接口失控。
 
-## Geometry 示例
+## 下一步阅读
 
-```python
-import numpy as np
-
-from qrlib.geometry import PointCloud, normalize_to_sphere
-
-points = np.array(
-    [
-        [0.0, 0.0, 0.0],
-        [2.0, 0.0, 0.0],
-        [1.0, 1.0, 0.0],
-    ],
-    dtype=np.float32,
-)
-cloud = PointCloud(points)
-
-normalized_cloud, source_center, source_scale = normalize_to_sphere(cloud)
-```
-
-更多说明可继续阅读：
-
-- [架构说明](architecture.md)
-- [Geometry 总览](geometry/index.md)
-- [归一化接口说明](geometry/normalization.md)
+- [几何归一化工作流](tutorials/geometry-normalization-workflow.md)
+- [qrlib.geometry API](api/geometry.md)
+- [仓库架构](concepts/architecture.md)
+- [面向规范开发](concepts/spec-driven-development.md)

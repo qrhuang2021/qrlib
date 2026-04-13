@@ -3,44 +3,47 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>qrlib 本地文档入口</title>
+    <title>qrlib 文档入口</title>
     <style>
       :root {
         color-scheme: light;
-        --bg: #f4f7f4;
-        --card: #ffffff;
-        --text: #18322f;
-        --muted: #58706c;
+        --bg: #f3f7f6;
+        --panel: #ffffff;
+        --text: #16312d;
+        --muted: #5a726d;
+        --border: #d6e2df;
         --accent: #0f766e;
-        --border: #d7e2df;
+        --accent-soft: #e6f5f2;
+      }
+
+      * {
+        box-sizing: border-box;
       }
 
       body {
         margin: 0;
         min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 24px;
+        padding: 32px 20px;
         background:
-          radial-gradient(circle at top left, #d8efe9 0, transparent 36%),
+          radial-gradient(circle at top left, #d6efe7 0, transparent 32%),
           linear-gradient(180deg, #fbfdfc 0, var(--bg) 100%);
         color: var(--text);
         font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
       }
 
       main {
-        max-width: 640px;
+        max-width: 920px;
+        margin: 0 auto;
         padding: 32px;
         border: 1px solid var(--border);
-        border-radius: 18px;
-        background: color-mix(in srgb, var(--card) 92%, white);
-        box-shadow: 0 18px 48px rgba(15, 118, 110, 0.08);
+        border-radius: 20px;
+        background: color-mix(in srgb, var(--panel) 94%, white);
+        box-shadow: 0 20px 48px rgba(15, 118, 110, 0.08);
       }
 
       h1 {
-        margin-top: 0;
-        margin-bottom: 12px;
-        font-size: 2rem;
+        margin: 0 0 12px;
+        font-size: 2.1rem;
       }
 
       p {
@@ -49,46 +52,108 @@
         color: var(--muted);
       }
 
-      a {
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin: 28px 0;
+      }
+
+      .card {
+        display: block;
+        padding: 20px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--panel);
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+        box-shadow: 0 16px 32px rgba(15, 118, 110, 0.08);
+      }
+
+      .card h2 {
+        margin: 0 0 8px;
+        font-size: 1.1rem;
+      }
+
+      .tag {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 0.25em 0.65em;
+        border-radius: 999px;
+        background: var(--accent-soft);
         color: var(--accent);
+        font-size: 0.85rem;
       }
 
       code {
-        padding: 0.1em 0.35em;
+        padding: 0.12em 0.4em;
         border-radius: 6px;
         background: #eef6f4;
         color: var(--text);
         font-family: "JetBrains Mono", "Cascadia Code", monospace;
       }
+
+      .status {
+        margin-top: 20px;
+        padding: 16px;
+        border-radius: 14px;
+        border: 1px dashed var(--border);
+        background: #fafcfb;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 1.25rem;
+        color: var(--muted);
+      }
     </style>
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        fetch("./site/index.html", { method: "HEAD" })
-          .then((response) => {
-            if (response.ok) {
-              window.location.replace("./site/index.html");
-            }
-          })
-          .catch(() => {});
-      });
-    </script>
   </head>
   <body>
     <main>
-      <h1>qrlib 本地文档入口</h1>
+      <h1>qrlib 文档入口</h1>
       <p>
-        这个页面用于从本地仓库打开构建后的 HTML 文档站。
-        如果页面没有自动跳转，通常说明你还没有生成静态站点。
+        公开文档默认不会展示维护者用的 <code>developer</code> 内容。
+        如果你需要查看规范或设计文档，可以直接从这个入口页打开隐藏页面。
       </p>
-      <p>
-        先在仓库根目录执行 <code>mkdocs build</code>，然后重新打开本页；
-        或者直接执行 <code>mkdocs serve</code>，再访问
-        <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>。
-      </p>
-      <p>
-        若你已经构建完成，也可以直接打开
-        <a href="./site/index.html">site/index.html</a>。
-      </p>
+
+      <div class="cards">
+        <a class="card" href="./site/index.html">
+          <span class="tag">Public</span>
+          <h2>公开文档</h2>
+          <p>面向库使用者与集成者，包含快速开始、教程、API 和概念说明。</p>
+        </a>
+
+        <a class="card" href="./site/developer/specs/index.html">
+          <span class="tag">Developer / Specs</span>
+          <h2>开发者规范</h2>
+          <p>查看 change slug、验收标准、公开契约与变更边界。</p>
+        </a>
+
+        <a class="card" href="./site/developer/design/index.html">
+          <span class="tag">Developer / Design</span>
+          <h2>开发者设计</h2>
+          <p>查看模块拆分、设计取舍、风险分析与验证计划。</p>
+        </a>
+      </div>
+
+      <div class="status">
+        <p>如果上面的链接暂时打不开，先在仓库根目录执行：</p>
+        <ul>
+          <li><code>mkdocs build</code>：生成静态 HTML 站点</li>
+          <li><code>mkdocs serve</code>：启动本地预览站点</li>
+        </ul>
+        <p style="margin-top: 12px;">
+          使用 <code>mkdocs serve</code> 时，也可以直接访问
+          <code>http://127.0.0.1:8000/developer/specs/</code> 与
+          <code>http://127.0.0.1:8000/developer/design/</code>。
+        </p>
+      </div>
     </main>
   </body>
 </html>
