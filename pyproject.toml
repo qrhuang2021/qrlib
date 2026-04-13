@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "qrlib"
-version = "0.1.0"
+version = "0.2.0"
 description = "Reusable 3D deep learning utilities for research projects."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -16,13 +16,16 @@ dependencies = [
 dev = [
   "mkdocs>=1.6",
   "mkdocs-material>=9.5",
-  "pre-commit",
-  "pytest",
-  "ruff",
+  "pre-commit>=3.7",
+  "pytest>=8.2",
+  "ruff>=0.9",
 ]
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/qrlib"]
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

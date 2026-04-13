@@ -39,7 +39,13 @@ markdown_extensions:
 nav:
   - 首页: index.md
   - 快速开始: getting-started.md
-  - 架构说明: architecture.md
-  - Geometry:
-      - 总览: geometry/index.md
-      - 归一化: geometry/normalization.md
+  - 教程:
+      - 总览: tutorials/index.md
+      - 几何归一化工作流: tutorials/geometry-normalization-workflow.md
+  - API:
+      - 总览: api/index.md
+      - qrlib.geometry: api/geometry.md
+  - 概念:
+      - 总览: concepts/index.md
+      - 仓库架构: concepts/architecture.md
+      - 面向规范开发: concepts/spec-driven-development.md
