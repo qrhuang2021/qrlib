@@ -2,6 +2,7 @@ site_name: qrlib
 site_description: 面向三维深度学习项目的可复用 Python 库文档
 repo_url: https://github.com/qrhuang2021/qrlib
 repo_name: qrhuang2021/qrlib
+site_url: https://qrhuang2021.github.io/qrlib/
 docs_dir: docs
 site_dir: site
 strict: true

@@ -7,6 +7,7 @@
   - 对外文档放在 `docs/index.md`、`docs/getting-started.md`、`docs/tutorials/`、`docs/api/`、`docs/concepts/`
   - 维护者规范与设计放在 `docs/developer/specs/` 与 `docs/developer/design/`
 - `docs/developer/` 下的页面会被构建进站点，但默认不出现在公开导航栏中；维护者可通过 `open-docs.html` 或直接访问 `/developer/specs/`、`/developer/design/` 打开。
+- GitHub Pages 应通过 `.github/workflows/docs.yml` 部署 `mkdocs build` 生成的 `site/`，不要依赖仓库默认的 Jekyll 渲染 `docs/` 目录。
 - `qrlib.__init__` 保持精简，只暴露明确承诺的顶层接口。
 
 ## 面向规范开发
