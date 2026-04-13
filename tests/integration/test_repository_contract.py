@@ -20,11 +20,13 @@ def test_docs_tree_matches_spec_driven_layout() -> None:
         "docs/concepts/spec-driven-development.md",
         "docs/developer/specs/index.md",
         "docs/developer/specs/feature-template.md",
+        "docs/developer/specs/github-pages-deployment.md",
         "docs/developer/specs/repository-layout-and-workflow.md",
         "docs/developer/specs/geometry-normalization.md",
         "docs/developer/specs/point-cloud-distance-metrics.md",
         "docs/developer/design/index.md",
         "docs/developer/design/feature-template.md",
+        "docs/developer/design/github-pages-deployment.md",
         "docs/developer/design/repository-layout-and-workflow.md",
         "docs/developer/design/geometry-normalization.md",
         "docs/developer/design/point-cloud-distance-metrics.md",
@@ -59,3 +61,16 @@ def test_agents_reference_spec_and_design_paths() -> None:
 
     assert "docs/developer/specs" in agents
     assert "docs/developer/design" in agents
+
+
+def test_docs_workflow_deploys_mkdocs_site_to_pages() -> None:
+    workflow = (ROOT / ".github/workflows/docs.yml").read_text(encoding="utf-8")
+
+    assert 'branches: ["main", "master"]' in workflow
+    assert "workflow_dispatch:" in workflow
+    assert "actions/configure-pages@v5" in workflow
+    assert "enablement: true" in workflow
+    assert "mkdocs build" in workflow
+    assert "path: site" in workflow
+    assert "actions/deploy-pages@v4" in workflow
+    assert "github.event_name == 'push'" not in workflow
